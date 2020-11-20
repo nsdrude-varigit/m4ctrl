@@ -6,7 +6,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-SOC ?= IMX8QM
+SOC ?= IMX8MM
 family := $(shell echo $(SOC) | cut -c1-4)
 LCFLAGS := -Wall -g -D$(SOC)
 CCFLAGS := $(CFLAGS) $(LCFLAGS)
@@ -17,6 +17,9 @@ INCLUDES := -I../include -I../include/platform
 
 TARGET := m4ctrl
 
+ifeq ($(SOC),IMX8MM)
+SOURCES += platform/imx8mm.c
+else
 ifeq ($(family),IMX8)
 SOURCES += platform/imx8.c
 else
@@ -24,6 +27,7 @@ ifneq ($(filter $(family), IMX6 IMX7),)
 SOURCES += platform/imx_v6_v7.c
 else
 $(error "Undefined SOC!")
+endif
 endif
 endif
 
