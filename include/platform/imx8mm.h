@@ -18,12 +18,14 @@
  * - SRC
  * - OCRAM
  * - TCML
+ * - DDR
  */
-#define MEM_AREAS	(3)
+#define MEM_AREAS	(4)
 
 #define SRC_IDX		(0)
 #define OCRAM_IDX	(1)
 #define TCML_IDX	(2)
+#define DDR_IDX 	(3)
 
 #if defined(IMX8MM)
 
@@ -46,10 +48,12 @@
 #endif
 
 #define TCML_ADDR   0x7E0000U
+#define DDR_ADDR   0x7E000000U
 
 #define SRC_MAP_SIZE    (M4RCR_OFFS + 4U)
 #define TCML_MAP_SIZE   (128U * 1024U)			//128KiB
 #define OCRAM_MAP_SIZE  (2U * 4U)
+#define DDR_MAP_SIZE    (0x1000000U)
 
 #if !defined(__KERNEL__)
 typedef struct {
