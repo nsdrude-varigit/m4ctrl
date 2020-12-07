@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 This application is an example of controlling M4 core from A core: stop, start,
-deploy a new firmware for M4 into TCM. Depending on the used platform, the application can
+deploy a new firmware for M4 into TCM (and DDR for i.MX8MM). Depending on the used platform, the application can
 be only user space or to have a light component in kernel space and one in user space.
 
 Supported platforms: i.mx8qm and i.mx8qxp
@@ -39,7 +39,7 @@ make
 
 #### # Instructions for i.mx8 platform
 Note:
-1. This application assumes that the M4 apps are compiled for TCM in order to be in sync with MCU SDK release (SDK_2.2_VAL-MIMX8QM_M4).
+1. This application assumes that the M4 apps are compiled for TCM in order to be in sync with MCU SDK release (SDK_2.2_VAL-MIMX8QM_M4). (TCM and DDR are supported for i.MX8MM with --mem=tcm and --mem=ddr). 
 If other memories are needed for M4 app, please update these macros from include/m4ctrl.h. Please note that some memories will likely need to
 be reserved from Linux dtb in order to be excluded from the memory used by linux.
 2. hello_world app for M4 was used for testing.

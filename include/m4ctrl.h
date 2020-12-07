@@ -48,4 +48,9 @@ void m4_deploy( char * filename );
 #define M4CTRL_VERSION "mctrl rev. 0.1.0_rc1"
 #endif
 
+typedef enum {
+        MEM_TCM,
+        MEM_DDR
+} MEMORY_LOCATION_t;
+
 #endif

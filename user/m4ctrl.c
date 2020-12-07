@@ -21,6 +21,7 @@ static char * filename = NULL;
 static struct option long_options[] =
 {
     {"help", no_argument,       0, 'h'},
+    {"mem", required_argument, 0, 'm'},
 #if M4_CORES_NUM > 1
     {"core", required_argument, 0, 'c'},
 #endif
@@ -49,6 +50,7 @@ static void usage(const char *argv0)
 #if defined(IMX8QM) || defined(IMX8QXP) || defined(IMX8MM)
 		"\t --start - start the specified M4 core\n"
 		"\t --stop - stop the specified M4 core\n"
+		"\t --mem=<tcm|ddr> - run from DDR or TCM memory, default is tcm \n"
 #endif
         "\t --reset - reset the specified M4 core\n"
 		"\t --deploy=<firmware_file> - deploy firmware_file on the specified M4 core\n"
@@ -59,6 +61,7 @@ static void usage(const char *argv0)
 
 static int start = 0, stop = 0, deploy = 0, reset = 0;
 int core_id = 0, fd_mem;
+int target_memory_location = MEM_TCM;
 
 void alignment_check(m4_data * m4)
 {
@@ -159,6 +162,17 @@ static void parse_cmds(int argc, char ** argv)
 				}
 #endif
 
+				break;
+
+			case 'm':
+				if(0 == strcmp(optarg, "tcm")) {
+					target_memory_location = MEM_TCM;
+				} else if (0 == strcmp(optarg, "ddr")) {
+					target_memory_location = MEM_DDR;
+				} else {
+					fprintf(stderr, "invalid value for --mem '%s'\n", optarg);
+					exit(EXIT_FAILURE);
+				}
 				break;
 
 			case 's':
