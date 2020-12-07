@@ -9,7 +9,7 @@
 
 SOC ?= IMX8MM
 CROSS_COMPILE ?= aarch64-linux-gnu-
-CC := $(CROSS_COMPILE)gcc
+CC ?= $(CROSS_COMPILE)gcc
 armv7_socs := IMX6SX IMX7S IMX7D
 armv8_socs := IMX8QM IMX8QX
 armv8_socs_no_module := IMX8MM
