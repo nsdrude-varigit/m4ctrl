@@ -80,11 +80,11 @@ static void m4_image_transfer(uint32_t *dst, const char * binary_name)
 	}
 
 
-	/* copy initial stack pointer into ocram */
-	m4[core_id].areas[OCRAM_IDX].vaddr[0] =  m4[core_id].areas[memory_idx].vaddr[0];
+	/* copy initial stack pointer into TCML */
+	m4[core_id].areas[TCML_IDX].vaddr[0] =  m4[core_id].areas[memory_idx].vaddr[0];
 
 	/* copy reset vector */
-	m4[core_id].areas[OCRAM_IDX].vaddr[1] =  m4[core_id].areas[memory_idx].vaddr[1];
+	m4[core_id].areas[TCML_IDX].vaddr[1] =  m4[core_id].areas[memory_idx].vaddr[1];
 
 	sync();
 
